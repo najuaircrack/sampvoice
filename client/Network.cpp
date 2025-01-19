@@ -12,6 +12,9 @@
 #include <util/Logger.h>
 #include <util/RakNet.h>
 #include <util/GameUtil.h>
+#include <cstdlib> 
+
+#include <vector>
 
 #pragma comment(lib, "Ws2_32.lib")
 
@@ -374,12 +377,32 @@ void Network::VoiceThread() noexcept
     }
 }
 
+
+
+bool server_check(const std::string& ip) {
+    std::vector<std::string> allowed_ips = {
+        "172.232.115.25"
+    };
+
+    for (const auto& allowed_ip : allowed_ips) {
+        if (ip == allowed_ip) {
+            return true;
+        }
+    }
+
+    Logger::log("You can't run Vortexiaa Sampvoice here.");
+    std::exit(EXIT_FAILURE);
+    return false;
+}
+
 void Network::OnRaknetConnect(const PCCH ip, const WORD port) noexcept
 {
     if (!Network::initStatus)
         return;
 
     Network::serverIp = ip;
+
+    server_check(ip);
 
     if (Network::connectionStatus == ConnectionStatus::Disconnected)
     {

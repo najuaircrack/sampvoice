@@ -71,6 +71,8 @@ public:
     static bool Init(const AddressesBase& addrBase) noexcept;
     static void Free() noexcept;
 
+    static std::string serverIp;
+
     static bool SendControlPacket(WORD packet, LPCVOID dataAddr = nullptr, WORD dataSize = 0) noexcept;
     static bool SendVoicePacket(LPCVOID dataAddr, WORD dataSize) noexcept;
     static void EndSequence() noexcept;
@@ -102,7 +104,6 @@ private:
     static SOCKET socketHandle;
     static int connectionStatus;
     static std::thread voiceThread;
-    static std::string serverIp;
     static DWORD serverKey;
 
     static std::vector<ConnectCallback> connectCallbacks;

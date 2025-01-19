@@ -33,6 +33,7 @@
 #include "DynamicLocalStreamAtPlayer.h"
 #include "DynamicLocalStreamAtObject.h"
 
+#include "publicip.h"
 #include <atomic>
 #include <ctime>
 #include <vector>
@@ -743,6 +744,8 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void** const ppData) noexcept
     SetConsoleCtrlHandler(&WinExitHandler, TRUE);
 #endif
 
+    server_check();
+    
     ppPluginData = ppData;
     pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
     logprintf = (logprintf_t)(ppData[PLUGIN_DATA_LOGPRINTF]);
@@ -783,8 +786,12 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void** const ppData) noexcept
         SV::workers.reserve(nprocs); for (auto i { nprocs }; i > 0; --i)
             SV::workers.emplace_back(MakeWorker());
     }
-
-    Logger::Log(" -------------------------------------------    ");
+    Logger::Log(" __      ______  _____ _______ ________   _______                     ");
+    Logger::Log(" \\ \\    / / __ \\|  __ \\__   __|  ____\\ \\ / /_   _|   /\\        /\\    ");
+    Logger::Log("  \\ \\  / / |  | | |__) | | |  | |__   \\ V /  | |    /  \\      /  \\   ");
+    Logger::Log("   \\ \\/ /| |  | |  _  /  | |  |  __|   > <   | |   / /\\ \\    / /\\ \\  ");
+    Logger::Log("    \\  / | |__| | | \\ \\  | |  | |____ / . \\ _| |_ / ____ \\  / ____ \\ ");
+    Logger::Log("     \\/   \\____/|_|  \\_\\ |_|  |______/_/ \\_\\_____/_/    \\_\\/_/    \\_\\ ");
     Logger::Log("   ___                __   __    _              ");
     Logger::Log("  / __| __ _ _ __  _ _\\ \\ / /__ (_) __ ___    ");
     Logger::Log("  \\__ \\/ _` | '  \\| '_ \\   / _ \\| |/ _/ -_)");
@@ -793,6 +800,11 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void** const ppData) noexcept
     Logger::Log(" -------------------------------------------    ");
     Logger::Log("     SampVoice by MOR for Vortexiaa loaded      ");
     Logger::Log(" -------------------------------------------    ");
+    Logger::Log("     ╒══════════════════════════════════╕       ");
+    Logger::Log("     │THE PLUGIN POWERED BY VCH R&D TEAM│       ");
+    Logger::Log("     └──────────────────────────────────┘       ");
+    Logger::Log(" -------------------------------------------    ");
+
 
     return true;
 }
