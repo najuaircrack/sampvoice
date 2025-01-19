@@ -791,7 +791,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void** const ppData) noexcept
     Logger::Log("  |___/\\__,_|_|_|_| .__/\\_/\\___/|_|\\__\\___|");
     Logger::Log("                  |_|                           ");
     Logger::Log(" -------------------------------------------    ");
-    Logger::Log("           SampVoice by MOR loaded              ");
+    Logger::Log("     SampVoice by MOR for Vortexiaa loaded      ");
     Logger::Log(" -------------------------------------------    ");
 
     return true;
